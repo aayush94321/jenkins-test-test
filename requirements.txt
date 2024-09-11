@@ -1,0 +1,6 @@
+Flask==2.0.1
+python-dotenv==0.19.2
+GitPython==3.1.18
+requests==2.26.0
+python-jenkins
+werkzeug==0.16.1
