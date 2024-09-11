@@ -330,7 +330,6 @@ def update_pipeline():
         
         docker_build_command = f"docker build -t {docker_image_name} -f {dockerfile_path} {TEMP_DIR}"
         build_result = subprocess.run(docker_build_command, shell=True, capture_output=True, text=True)
-
         if build_result.returncode != 0:
             return jsonify({"error": f"Docker build failed: {build_result.stderr}"}), 500
         
