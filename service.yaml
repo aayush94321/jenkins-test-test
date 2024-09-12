@@ -1,0 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: TEST-JENKINS
+  namespace: TEST-PROJECT
+  labels:
+    app: TEST-PROJECT
+spec:
+  selector:
+    matchLabels:
+      app: TEST-PROJECT
+  replicas:
+  strategy: 
+    type:
+    rollingUpdate:
+  template:
+    metadata:
+      labels:
+        app: TEST-PROJECT
+    spec:
+      containers:
+      - name: TEST-JENKINS
+        image: "sujitsingh1/jenkins-test-test:main"
+        resources:
+          limits:
+            cpu: 128m
+            memory: 500Mi
+          requests:
+            cpu: 20m
+            memory: 100Mi  
+        envFrom:
+        - secretRef:
+            name: TEST-JENKINS
+        imagePullPolicy:
+        ports:
+        - containerPort:
+      nodeSelector:
+        allowed:
+      tolerations:
+      - effect:
+        key:
+        operator:
+        value:         
+      imagePullSecrets:
+        - name:
+---
+
+apiVersion:
+kind: Service
+metadata:
+  name: TEST-JENKINS
+  namespace: TEST-PROJECT
+spec:
+  selector:
+    app: TEST-PROJECT
+  type:
+  ports:
+  - protocol:
+    port:
+    targetPort:
+---
+apiVersion:
+kind:
+metadata:
+  name: TEST-JENKINS
+  namespace: TEST-PROJECT
+spec:
+  scaleTargetRef:
+    apiVersion:
+    kind: Deployment
+    name: TEST-JENKINS
+  minReplicas:
+  maxReplicas:
+  metrics:
+  - type:
+    resource:
+      name:
+      target:
+        type:
+        averageValue:
+  - type:
+    resource:
+      name:
+      target:
+        type:
+        averageValue:    
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds:
+      policies:
+      - type:
+        value:
+        periodSeconds:
+      selectPolicy:
