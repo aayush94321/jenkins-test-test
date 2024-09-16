@@ -10,6 +10,9 @@ COPY . /app
 # Install the required Python packages
 RUN pip install --no-cache-dir -r requirements.txt
 
+#Install GIT
+RUN apt-get update && apt-get install -y git
+
 # Example Dockerfile snippet to update packages and dependencies
 RUN apt-get update && apt-get install -y git \
     && pip install --upgrade pip \
