@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: TEST-JENKINS
-  namespace: TEST-PROJECT
+  name: test-jenkins
+  namespace: test-project
   labels:
-    app: TEST-PROJECT
+    app: test-project
 spec:
   selector:
     matchLabels:
-      app: TEST-PROJECT
+      app: test-project
   replicas:
   strategy: 
     type:
@@ -16,10 +16,10 @@ spec:
   template:
     metadata:
       labels:
-        app: TEST-PROJECT
+        app: test-project
     spec:
       containers:
-      - name: TEST-JENKINS
+      - name: test-jenkins
         image: "sujitsingh1/jenkins-test-test:main"
         resources:
           limits:
@@ -30,7 +30,7 @@ spec:
             memory: 100Mi  
         envFrom:
         - secretRef:
-            name: TEST-JENKINS
+            name: test-jenkins
         imagePullPolicy:
         ports:
         - containerPort:
@@ -48,11 +48,11 @@ spec:
 apiVersion:
 kind: Service
 metadata:
-  name: TEST-JENKINS
-  namespace: TEST-PROJECT
+  name: test-jenkins
+  namespace: test-project
 spec:
   selector:
-    app: TEST-PROJECT
+    app: test-project
   type:
   ports:
   - protocol:
@@ -62,13 +62,13 @@ spec:
 apiVersion:
 kind:
 metadata:
-  name: TEST-JENKINS
-  namespace: TEST-PROJECT
+  name: test-jenkins
+  namespace: test-project
 spec:
   scaleTargetRef:
     apiVersion:
     kind: Deployment
-    name: TEST-JENKINS
+    name: test-jenkins
   minReplicas:
   maxReplicas:
   metrics:
