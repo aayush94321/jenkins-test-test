@@ -1,14 +1,14 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
   name: test-jenkins
-  namespace: test-project
+  namespace: default
   labels:
-    app: test-project
+    app: default
 spec:
   selector:
     matchLabels:
-      app: test-project
+      app: default
   replicas:
   strategy: 
     type:
@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       labels:
-        app: test-project
+        app: default
     spec:
       containers:
       - name: test-jenkins
@@ -49,10 +49,10 @@ apiVersion:
 kind: Service
 metadata:
   name: test-jenkins
-  namespace: test-project
+  namespace: default
 spec:
   selector:
-    app: test-project
+    app: default
   type:
   ports:
   - protocol:
@@ -63,7 +63,7 @@ apiVersion:
 kind:
 metadata:
   name: test-jenkins
-  namespace: test-project
+  namespace: default
 spec:
   scaleTargetRef:
     apiVersion:
