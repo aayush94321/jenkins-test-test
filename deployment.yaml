@@ -27,5 +27,8 @@ spec:
       containers:
         - name: test-jenkins
           image: sujitsingh1/jenkins-test-test:main
+          env:
+          - name: GIT_PYTHON_GIT_EXECUTABLE
+            value: "/usr/bin/git"
           ports:
             - containerPort: 5000
