@@ -1,11 +1,31 @@
-apiVersion: v1
-kind: Service
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: test-jenkins
+# spec:
+#   selector:
+#     app: test-jenkins
+#   ports:
+#     - protocol: TCP
+#       port: 80
+#       targetPort: 8080
+
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: test-jenkins
 spec:
+  replicas: 1
   selector:
-    app: test-jenkins
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
+    matchLabels:
+      app: test-jenkins
+  template:
+    metadata:
+      labels:
+        app: test-jenkins
+    spec:
+      containers:
+        - name: test-jenkins
+          image: sujitsingh1/jenkins-test-test:main
+          ports:
+            - containerPort: 5000

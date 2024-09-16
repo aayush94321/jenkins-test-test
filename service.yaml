@@ -1,94 +1,106 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: test-jenkins
+#   namespace: default
+#   labels:
+#     app: default
+# spec:
+#   selector:
+#     matchLabels:
+#       app: default
+#   replicas:
+#   strategy: 
+#     type:
+#     rollingUpdate:
+#   template:
+#     metadata:
+#       labels:
+#         app: default
+#     spec:
+#       containers:
+#       - name: test-jenkins
+#         image: "sujitsingh1/jenkins-test-test:main"
+#         resources:
+#           limits:
+#             cpu: 128m
+#             memory: 500Mi
+#           requests:
+#             cpu: 20m
+#             memory: 100Mi  
+#         envFrom:
+#         - secretRef:
+#             name: test-jenkins
+#         imagePullPolicy:
+#         ports:
+#         - containerPort:
+#       nodeSelector:
+#         allowed:
+#       tolerations:
+#       - effect:
+#         key:
+#         operator:
+#         value:         
+#       imagePullSecrets:
+#         - name:
+# ---
+
+# apiVersion:
+# kind: Service
+# metadata:
+#   name: test-jenkins
+#   namespace: default
+# spec:
+#   selector:
+#     app: default
+#   type:
+#   ports:
+#   - protocol:
+#     port:
+#     targetPort:
+# ---
+# apiVersion:
+# kind:
+# metadata:
+#   name: test-jenkins
+#   namespace: default
+# spec:
+#   scaleTargetRef:
+#     apiVersion:
+#     kind: Deployment
+#     name: test-jenkins
+#   minReplicas:
+#   maxReplicas:
+#   metrics:
+#   - type:
+#     resource:
+#       name:
+#       target:
+#         type:
+#         averageValue:
+#   - type:
+#     resource:
+#       name:
+#       target:
+#         type:
+#         averageValue:    
+#   behavior:
+#     scaleDown:
+#       stabilizationWindowSeconds:
+#       policies:
+#       - type:
+#         value:
+#         periodSeconds:
+#       selectPolicy:
+
 apiVersion: v1
 kind: Service
 metadata:
   name: test-jenkins
-  namespace: default
-  labels:
-    app: default
 spec:
   selector:
-    matchLabels:
-      app: default
-  replicas:
-  strategy: 
-    type:
-    rollingUpdate:
-  template:
-    metadata:
-      labels:
-        app: default
-    spec:
-      containers:
-      - name: test-jenkins
-        image: "sujitsingh1/jenkins-test-test:main"
-        resources:
-          limits:
-            cpu: 128m
-            memory: 500Mi
-          requests:
-            cpu: 20m
-            memory: 100Mi  
-        envFrom:
-        - secretRef:
-            name: test-jenkins
-        imagePullPolicy:
-        ports:
-        - containerPort:
-      nodeSelector:
-        allowed:
-      tolerations:
-      - effect:
-        key:
-        operator:
-        value:         
-      imagePullSecrets:
-        - name:
----
-
-apiVersion:
-kind: Service
-metadata:
-  name: test-jenkins
-  namespace: default
-spec:
-  selector:
-    app: default
-  type:
+    app: test-jenkins
   ports:
-  - protocol:
-    port:
-    targetPort:
----
-apiVersion:
-kind:
-metadata:
-  name: test-jenkins
-  namespace: default
-spec:
-  scaleTargetRef:
-    apiVersion:
-    kind: Deployment
-    name: test-jenkins
-  minReplicas:
-  maxReplicas:
-  metrics:
-  - type:
-    resource:
-      name:
-      target:
-        type:
-        averageValue:
-  - type:
-    resource:
-      name:
-      target:
-        type:
-        averageValue:    
-  behavior:
-    scaleDown:
-      stabilizationWindowSeconds:
-      policies:
-      - type:
-        value:
-        periodSeconds:
-      selectPolicy:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
